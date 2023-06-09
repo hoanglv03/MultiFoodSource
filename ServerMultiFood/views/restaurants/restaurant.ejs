@@ -1,0 +1,127 @@
+<%- include('../inc/top') %>
+  <div class="me-4 ms-4 mt-3">
+    <button type="button" class="btn btn-outline-danger me-4" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+      Thêm mới
+    </button>
+    <!-- // show list restaurant -->
+    <table class="table table-hover">
+      <thead>
+        <tr class="text-secondary">
+          <th scope="col" >#</th>
+          <th scope="col">Tên nhà hàng</th>
+          <th scope="col">Thể loại</th>
+          <th scope="col">Tài khoản sở hữu</th>
+          <th scope="col">Trạng thái</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <% listRestaurant.forEach((item,index)=> { %>
+        <tr>
+          <th scope="row"><%= index + 1 %></th>
+          <td>
+            <%= item.nameRestaurant %>
+          </td>
+          <td>
+            <% var _lengthCategory=item.category.length %>
+              <% item.category.forEach((item,index)=> { %>
+                <span >
+                  <%= item %>
+                    <% if(index < _lengthCategory - 1) {%>
+                      <span >|</span>
+                      <%} %>
+                </span>
+                <% }) %>
+          </td>
+          <td><%= item.idUserRestaurant.userName  %> </td>
+          <td class="<%= item.status === 0 ? 'text-success':'text-danger'%>"><%= item.status === 0 ? 'Hoạt động':'Đình chỉ'  %></td>
+          <td>
+            <div><button type="button" class="btn btn-outline-success">Chi tiết</button></div>
+          </td>
+        </tr>
+        <% }) %>
+    </table>
+
+  </div>
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form action="" method="post" id="form-restaurant" enctype="multipart/form-data">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">
+              Thêm nhà hàng
+            </h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Ảnh đại diện</label>
+                <input type="file" class="form-control avatar" required name="avatar" placeholder="..." />
+              </div>
+              <label for="exampleFormControlInput1" class="form-label">Tên nhà hàng</label>
+              <input type="text" class="form-control nameRestaurant" required name="nameRestaurant" placeholder="..." />
+            </div>
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Địa chỉ</label>
+              <input type="text" class="form-control address" required name="address" placeholder="..." />
+            </div>
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Số điện thoại</label>
+              <input type="number" class="form-control phoneNumber" required name="phoneNumber" placeholder="..." />
+            </div>
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Tài khoản người dùng</label>
+              <input type="text" class="form-control username" required name="username" onkeyup="sendData(this)" id="searchInput
+            placeholder=" ..." />
+              <ul style="position: absolute" id="searchResults" class="list-group"></ul>
+            </div>
+
+            <div class="mb-3">
+              <div class="content">
+                <p>Thể loại (Mỗi thể loại cách nhau bởi dấu ' , ')</p>
+                <ul class="ul-category">
+                  <input type="text" class="category" spellcheck="false" />
+                </ul>
+                <p>Số thể loại có thể thêm: <span class="count-tags">2</span> </p>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="floatingTextarea">Mô tả</label>
+              <textarea class="form-control description" placeholder="..." id="floatingTextarea"
+                name="description"></textarea>
+            </div>
+
+            <div class="showMessage"></div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+              Hủy
+            </button>
+            <button type="submit" class="btn btn-outline-primary btn-suscess">
+              Xác nhận
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <!--  toast message -->
+  <div id="updateToast" class="toast position-fixed top-0 end-0 mt-2 me-2" role="alert" aria-live="assertive"
+    aria-atomic="true">
+    <div class="toast-header">
+      <strong class="me-auto">Thông báo</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Đóng"></button>
+    </div>
+    <div class="toast-body text-success">
+      <%= msg %>
+    </div>
+  </div>
+  <script src="\javascripts\restaurant.js"></script>
+  <%- include('../inc/bottom') %>

@@ -1,0 +1,211 @@
+<%- include('../inc/top') %>
+  <button type="button" class="btn btn-outline-danger float-end me-4" data-bs-toggle="modal"
+    data-bs-target="#staticBackdrop">
+    Thêm mới
+  </button>
+
+  <div class="ms-3">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Họ và tên <a
+              href="?_sort&column=fullname&type=<%= sortColumn === 'fullname' ? type : 'esc' %>"><i
+                class="<%= sortColumn === 'fullname' ? icon : 'bx bxs-sort-alt' %>"></i></a></th>
+          <th scope="col">Tên người dùng <a
+              href="?_sort&column=userName&type=<%= sortColumn === 'userName' ? type : 'esc' %>"><i
+                class="<%= sortColumn === 'userName' ? icon : 'bx bxs-sort-alt' %>"></i></a></th>
+          <th scope="col">Sinh ngày <a
+              href="?_sort&column=birthDay&type=<%= sortColumn === 'birthDay' ? type : 'esc' %>"><i
+                class="<%= sortColumn === 'birthDay' ? icon : 'bx bxs-sort-alt' %>"></i></a></th>
+          <th scope="col">Tạo ngày <a
+              href="?_sort&column=createDay&type=<%= sortColumn === 'createDay' ? type : 'esc' %>"><i
+                class="<%= sortColumn === 'createDay' ? icon : 'bx bxs-sort-alt' %>"></i></a></th>
+                <th scope="col">Trạng thái</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% users.forEach((item,index)=> { %>
+          <tr>
+            <th scope="row">
+              <%= index + 1 %>
+            </th>
+            <td>
+              <%= item.fullName %>
+            </td>
+            <td>
+              <%= item.userName %>
+            </td>
+            <td>
+              <%= item.birthDayForMat %>
+            </td>
+            <td>
+              <%= item.dateCreateFormat %>
+            </td>
+            <td>
+              <p class="<%= item.status === 1? 'text-success':'text-warning'  %>"><%= item.status === 1? 'Hoạt động tốt':'Hoạt động kém' %></p>
+            </td>
+            <td>
+              <a href="" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="<%= item._id %>"><i
+                  class="bx bx-trash" style="color: #f51e22; font-size: 36px"></i></a>
+              <a href="">
+                <i class='bx bx-error-circle' style="font-size: 36px;color: #000000"></i>
+              </a>
+            </td>
+          </tr>
+          <% }) %>
+      </tbody>
+    </table>
+  </div>
+  <ul class="pagination float-end me-4 ">
+    <% if (pagination.page> 1) { %>
+      <li class="page-item">
+        <a class="page-link text-black" href="?page=<%= pagination.page - 1 %>">&laquo;</a>
+      </li>
+      <% } %>
+
+        <% for (let i of pagination.displayedPages) { %>
+          <li class="page-item  <%= i === pagination.page ? 'active' : '' %>">
+            <a class="page-link" href="?page=<%= i %>">
+              <%= i %>
+            </a>
+          </li>
+          <% } %>
+
+            <% if (pagination.page < pagination.totalPages) { %>
+              <li class="page-item ">
+                <a class="page-link text-black" href="?page=<%= pagination.page + 1 %>">&raquo;</a>
+              </li>
+              <% } %>
+  </ul>
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form action="" method="post">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">
+              Thêm người dùng
+            </h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Tên người dùng</label>
+              <input type="text" class="form-control  username" required name="userName" id="exampleFormControlInput1"
+                placeholder="..." />
+            </div>
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label ">Mật khẩu</label>
+              <input type="password" class="form-control password" required name="passWord"
+                id="exampleFormControlInput1" placeholder="..." />
+            </div>
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label ">Họ và Tên</label>
+              <input type="text" class="form-control fullname" required name="fullName" id="exampleFormControlInput1"
+                placeholder="..." />
+            </div>
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Sinh ngày</label>
+              <input type="date" class="form-control birthDay" required name="birthDay" id="exampleFormControlInput1"
+                placeholder="..." />
+            </div>
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label ">Số điện thoại</label>
+              <input type="number" class="form-control phoneNumber" required name="phoneNumber"
+                id="exampleFormControlInput1" placeholder="..." />
+            </div>
+            <div class="showMessage"></div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+              Hủy
+            </button>
+            <button type="submit" class="btn btn-outline-primary btn-suscess">
+              Xác nhận
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div id="updateToast" class="toast position-fixed top-0 end-0 mt-2 me-2" role="alert" aria-live="assertive"
+    aria-atomic="true">
+    <div class="toast-header">
+      <strong class="me-auto">Thông báo</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Đóng"></button>
+    </div>
+    <div class="toast-body text-success">
+      <%= msg %>
+    </div>
+  </div>
+
+  <!-- model delete -->
+  <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Xóa người dùng</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h1>Bạn chắc chắc muốn xóa người dùng này</h1>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+            Hủy
+          </button>
+          <button type="button" id="btnDeleteProduct" class="btn btn-outline-danger">
+            Xác nhận
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <form method="POST" name="delete-form"></form>
+
+  <script>
+    const exampleModal = document.getElementById("exampleModal");
+    if (exampleModal) {
+      exampleModal.addEventListener("show.bs.modal", (event) => {
+        // Button that triggered the modal
+        const button = event.relatedTarget;
+        // Extract info from data-bs-* attributes
+        const recipient = button.getAttribute("data-bs-whatever");
+        // If necessary, you could initiate an Ajax request here
+        // and then do the updating in a callback.
+        // Update the modal's content.
+        const modalTitle = exampleModal.querySelector(".modal-title");
+        const modalBodyInput = exampleModal.querySelector(".modal-body input");
+        modalTitle.textContent = `New message to ${recipient}`;
+        modalBodyInput.value = recipient;
+      });
+    }
+
+    //fake form delete user
+    var userId;
+    var deleteForm = document.forms["delete-form"];
+    const deleteModal = document.getElementById("deleteModal");
+    const btnDeleteProduct = document.getElementById("btnDeleteProduct");
+    deleteModal.addEventListener("show.bs.modal", (event) => {
+      const button = event.relatedTarget;
+      const id = button.getAttribute("data-id");
+      userId = id;
+    });
+    btnDeleteProduct.onclick = function () {
+      deleteForm.action = "restaurant-user/" + userId + "/delete";
+      deleteForm.submit();
+    };
+    document.addEventListener('DOMContentLoaded', function () {
+      var toastEl = document.querySelector('.toast');
+      var toast = new bootstrap.Toast(toastEl);
+      var toastMessage = document.querySelector('.toast-body');
+      if (toastEl && `<%= msg %>` !== "") {
+        toast.show();
+      }
+    });
+  </script>
+  <script src="/javascripts/user.js"></script>
+  <%- include('../inc/bottom') %>
