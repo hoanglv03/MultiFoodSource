@@ -1,7 +1,7 @@
 import { Image, SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
 
-import {Ionicons} from '@expo/vector-icons'
+import Icon from 'react-native-vector-icons/Ionicons'
 import Slider from "../../component/Slider";
 import FlatListProduct from "../../component/FlatListProduct";
 import ListFood from "../../component/ListFood";
@@ -35,11 +35,11 @@ export default function Home({navigation}) {
         marginTop:8,
         color:'#000000',
       }}>Đống Đa
-      <Ionicons name="ios-chevron-down-outline" size={16} />
+      <Icon name="chevron-down" size={16} />
      </Text>
      
      </View>
-     <Ionicons name="ios-options-outline" size={24} style={{ marginTop:26}} />
+     <Icon name="options-outline" size={24} style={{ marginTop:26}} />
      </SafeAreaView>
 
      

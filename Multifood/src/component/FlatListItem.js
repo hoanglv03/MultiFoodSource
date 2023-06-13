@@ -1,6 +1,6 @@
 import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { Ionicons } from "@expo/vector-icons";
+import Icon from 'react-native-vector-icons/AntDesign'
 
 const { width, height } = Dimensions.get("screen");
 export default function FlatListItem({ item }) {
@@ -48,7 +48,7 @@ export default function FlatListItem({ item }) {
                 color: "#F6F6F6",
               }}
             >
-              <Ionicons name="star" size={16} color={"#FFCB11"} />
+              <Icon name="star" size={16} color={"#FFCB11"} />
               { " "+item.rate}
             </Text>
           </View>

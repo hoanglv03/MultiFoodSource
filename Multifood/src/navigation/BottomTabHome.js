@@ -6,8 +6,8 @@ import Home from '../view/home/Home';
 import SearchScreen from '../view/home/SearchScreen';
 import OrderScreen from '../view/home/OrderScreen';
 import AccountScreen from '../view/home/AccountScreen';
-import Icon from 'react-native-ionicons'
 
+import Icon from 'react-native-vector-icons/Ionicons'
 
 const Tab = createBottomTabNavigator();
 
@@ -35,20 +35,20 @@ export default function BottomTabHome() {
               tabBarIcon:({focused,size,colour})=>{
                 let iconName;
                 if(route.name == "HomeScreen"){
-                  iconName = focused ? "home" : "home"
+                  iconName = focused ? "home" : "home-outline"
                   colour = focused ? '#D42323' : '#AAAAAA'
                 }else if(route.name == "SearchScreen"){
-                  iconName = focused ? "search" : "search"
+                  iconName = focused ? "search" : "search-outline"
                   colour = focused ? '#D42323' : '#AAAAAA'
                 }else if(route.name == "OrderScreen"){
-                  iconName = focused ? "ios-document-text" : "ios-document-text-outline"
+                  iconName = focused ? "document-text" : "document-text-outline"
                   colour = focused ? '#D42323' : '#AAAAAA'
                 }else if(route.name == "AccountScreen"){
-                  iconName = focused ? "ios-person" : "ios-person-outline"
+                  iconName = focused ? "person" : "person-outline"
                   colour = focused ? '#D42323' : '#AAAAAA'
                 }
     
-               return <Icon  name='home' size={20} color={colour}/>
+               return <Icon  name={iconName} size={20} color={colour}/>
               },
               tabBarIconStyle: {
                marginTop:18

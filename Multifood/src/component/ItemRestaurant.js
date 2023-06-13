@@ -1,7 +1,7 @@
 import { Alert, Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { Image } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import Icon from 'react-native-vector-icons/Ionicons'
 export default function ItemRestaurant({ item, navigation }) {
   return (
     <Pressable
@@ -21,7 +21,7 @@ export default function ItemRestaurant({ item, navigation }) {
             }}
           >
             <Text style={styles.contentFont}>
-              <Ionicons name="md-time-sharp" size={16} color={"#EBEBEB"} />
+              <Icon name="md-time-sharp" size={16} color={"#EBEBEB"} />
               {item.timeShip}
             </Text>
             <Text
@@ -34,12 +34,12 @@ export default function ItemRestaurant({ item, navigation }) {
                 color: "#F6F6F6",
               }}
             >
-              <Ionicons name="star" size={16} color={"#FFCB11"} />
+              <Icon name="star" size={16} color={"#FFCB11"} />
               {" " + item.rate}
             </Text>
           </View>
           <Text style={styles.contentFont}>
-            <Ionicons name="md-bicycle" size={16} color={"#EBEBEB"} />{" "}
+            <Icon name="md-bicycle" size={16} color={"#EBEBEB"} />{" "}
             {item.fee}
           </Text>
         </View>

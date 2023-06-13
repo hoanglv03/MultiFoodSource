@@ -12,7 +12,7 @@ import React from "react";
 export default function LoginScreen({navigation}) {
   return (
     <View style={styles.container}>
-      <SafeAreaView>
+     
         <Text
           style={{
            
@@ -37,7 +37,7 @@ export default function LoginScreen({navigation}) {
         >
           việc nấu ăn cứ để chúng tôi
         </Text>
-      </SafeAreaView>
+      
       <View
         style={{
           marginTop: 24,
@@ -204,7 +204,6 @@ const styles = StyleSheet.create({
     flex: 1,
     marginRight: 20,
     marginLeft: 20,
-    marginTop: 100,
-   
+    marginTop: 50
   },
 });

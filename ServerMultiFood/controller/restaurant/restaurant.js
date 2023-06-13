@@ -5,7 +5,6 @@ var fs = require("fs");
 let msg = ''
 let limit = 10;
 exports.restaurants = async(req, res, next) => {
-  let listRestaurant = await restaurants.restaurantModal.find().populate("idUserRestaurant","_id, userName").limit(limit);
 
   if(req.method === 'POST') {
     try {
@@ -55,6 +54,7 @@ exports.restaurants = async(req, res, next) => {
       console.log('Thêm thất bại 2',error);
     }
   }
+  let listRestaurant = await restaurants.restaurantModal.find().populate("idUserRestaurant","_id, userName").limit(limit);
   res.render('restaurants/restaurant',{titleScreen,msg,listRestaurant})
 }
 exports.searchUser = async(req, res) => {

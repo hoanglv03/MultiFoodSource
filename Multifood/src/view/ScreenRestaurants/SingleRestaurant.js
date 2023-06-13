@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import Icon from 'react-native-vector-icons/Ionicons'
 import FoodItem from "../../component/FoodItem";
 import ListFood from "../../component/ListFood";
 import CategoryFood from "../../component/CategoryFood";

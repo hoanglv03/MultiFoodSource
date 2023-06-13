@@ -1,7 +1,9 @@
 import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
 import React from "react";
 const { width, height } = Dimensions.get("screen");
-import { Ionicons } from "@expo/vector-icons";
+import Icon from "react-native-vector-icons/Ionicons";
+
+
 export default function HotelItem({ item }) {
   return (
     <View style={styles.container}>
@@ -27,17 +29,17 @@ export default function HotelItem({ item }) {
         </Text>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
           <Text style={styles.contentFont}>
-            {item.rate} <Ionicons name="star" size={16} color={"#FFCB11"} />
+            {item.rate} <Icon name="star" size={16} color={"#FFCB11"} />
           </Text>
           <View style={styles.dot} />
           <Text style={styles.contentFont}>
-            <Ionicons name="md-time-sharp" size={16} color={"#505050"} />
+            <Icon name="md-time-sharp" size={16} color={"#505050"} />
             {item.timeShip}
           </Text>
           <View style={styles.dot} />
 
           <Text style={styles.contentFont}>
-            <Ionicons name="md-bicycle" size={16} color={"#505050"} />{" "}
+            <Icon name="md-bicycle" size={16} color={"#505050"} />{" "}
             {item.fee}
           </Text>
         </View>

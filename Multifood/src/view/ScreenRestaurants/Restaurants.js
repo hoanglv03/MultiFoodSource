@@ -6,7 +6,7 @@ import ItemRestaurant from '../../component/ItemRestaurant'
 import { SafeAreaView } from 'react-native'
 import { Pressable } from 'react-native'
 import { Image } from 'react-native'
-import {Ionicons} from '@expo/vector-icons'
+import Icon from 'react-native-vector-icons/Ionicons'
 export default function Restaurants({navigation}) {
   return (
     <View styles={styles.container}>
@@ -31,7 +31,7 @@ export default function Restaurants({navigation}) {
         </Pressable>
           <Text style={{
          
-        }}>    <Ionicons name="ios-options-outline" size={24} /></Text>
+        }}>    <Icon name="ios-options-outline" size={24} /></Text>
         </View>
        
     
