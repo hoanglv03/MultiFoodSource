@@ -35,7 +35,7 @@
           <td><%= item.idUserRestaurant.userName  %> </td>
           <td class="<%= item.status === 0 ? 'text-success':'text-danger'%>"><%= item.status === 0 ? 'Hoạt động':'Đình chỉ'  %></td>
           <td>
-            <div><button type="button" class="btn btn-outline-success">Chi tiết</button></div>
+            <div><a type="button" class="btn btn-outline-success" href="/restaurant/detail/<%= item._id %>" >Chi tiết</a></div>
           </td>
         </tr>
         <% }) %>

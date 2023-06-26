@@ -14,6 +14,7 @@ const userRestaurant = new db.mongoose.Schema(
     createAt: { type: Date, required: true, default: Date.now() },
     status: { type: Number, required: true, default: 0 },
     description: { type: String, required: true },
+    rate:{type:Number,default:5},
   },
   { collection: "restaurants" }
 );

@@ -4,8 +4,9 @@ const restaurants = require("../../models/restaurant/restaurantModels");
 var fs = require("fs");
 let msg = ''
 let limit = 10;
-exports.restaurants = async(req, res, next) => {
 
+// show list of restaurant
+exports.restaurants = async(req, res, next) => {
   if(req.method === 'POST') {
     try {
       console.log('Đã chạy vào đây');
@@ -57,6 +58,7 @@ exports.restaurants = async(req, res, next) => {
   let listRestaurant = await restaurants.restaurantModal.find().populate("idUserRestaurant","_id, userName").limit(limit);
   res.render('restaurants/restaurant',{titleScreen,msg,listRestaurant})
 }
+// show list search users
 exports.searchUser = async(req, res) => {
   let payload = req.body.payload.trim();
   let search = await users.userResraurantModel.find({userName:{$regex: new RegExp('^'+payload+'.*','i')}}).exec();
