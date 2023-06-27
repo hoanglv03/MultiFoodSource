@@ -14,10 +14,13 @@ import SingleRestaurant from '../view/ScreenRestaurants/SingleRestaurant';
 import MenuTopping from '../view/ScreenRestaurants/MenuTopping';
 import TutorialScreen from '../view/tutorialscreen/tutorialScreen';
 import BottomTabHome from './BottomTabHome';
+import {store} from '../redux/store'
+import { Provider } from 'react-redux';
 const Stack = createStackNavigator();
 
 export default function StackScreens() {
-  return (
+  return ( 
+    <Provider store={store}>
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={() => ({headerShown: false})}
@@ -36,6 +39,7 @@ export default function StackScreens() {
         <Stack.Screen name="MenuTopping" component={MenuTopping} />
       </Stack.Navigator>
     </NavigationContainer>
+    </Provider>
   );
 }
 
