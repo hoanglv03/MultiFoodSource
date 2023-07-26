@@ -9,6 +9,7 @@ var objUpload = multer({dest:'./tmp'})
 
 router.get('/',restaurantController.restaurants);
 router.get('/detail/:id',detailController.detail);
+router.post('/detail/:id',objUpload.single('avatarFood'),detailController.detail);
 router.post('/',objUpload.single('avatar'),restaurantController.restaurants);
 router.post('/search',restaurantController.searchUser);
 module.exports = router;

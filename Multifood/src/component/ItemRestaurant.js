@@ -2,16 +2,22 @@ import { Alert, Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { Image } from "react-native";
 import Icon from 'react-native-vector-icons/Ionicons'
+import {useDispatch, useSelector} from 'react-redux';
+import {getRestaurant} from '../redux/action/action'
 export default function ItemRestaurant({ item, navigation }) {
+  const dispath = useDispatch()
+
   return (
     <Pressable
       onPress={() => {
+        // dispath(getRestaurant(item.id))
+        console.log('Item: ' , item.id)
         navigation.navigate("SingleRestaurant", { item: item });
       }}
       style={styles.container}
     >
       <View style={{ flex: 0.7, alignItems: "center" }}>
-        <Image source={item.img} resizeMode="center" style={styles.img} />
+        <Image source={item.img} style={styles.img} />
         <View style={styles.boxContent}>
           <View
             style={{
@@ -28,7 +34,7 @@ export default function ItemRestaurant({ item, navigation }) {
               style={{
                 fontFamily: "Product-Sans-Bold",
                 backgroundColor: "#D42323",
-
+                borderRadius:6,
                 width: 46,
                 textAlign: "center",
                 color: "#F6F6F6",
@@ -40,16 +46,16 @@ export default function ItemRestaurant({ item, navigation }) {
           </View>
           <Text style={styles.contentFont}>
             <Icon name="md-bicycle" size={16} color={"#EBEBEB"} />{" "}
-            {item.fee}
+            {item.ship}
           </Text>
         </View>
       </View>
       <View style={styles.titleContent}>
         <Text style={[styles.contentFont, styles.titleColor]}>
-          {item.nameHotel}
+          {item.nameRestaurants}
         </Text>
-        <Text style={[styles.contentFont, { color: "#868686", marginTop: 2 }]}>
-          {item.foodCategory[0]}
+        <Text style={[styles.contentFont, { color: "#868686", marginTop: 2 ,fontSize:12}]}>
+          {item.foodCategory.join(', ')}
         </Text>
       </View>
     </Pressable>
@@ -60,7 +66,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 0.5,
     height: 269,
-
+    
     marginRight: 14,
     marginLeft: 14,
   },

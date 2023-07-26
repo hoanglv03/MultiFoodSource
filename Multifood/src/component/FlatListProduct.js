@@ -3,13 +3,11 @@ import React from 'react'
 import Lists from '../data'
 import SilderItem from './SilderItem'
 import FlatListItem from './FlatListItem'
-import { useDispatch,useSelector } from 'react-redux'
-export default function FlatListProduct() {
-  const listRestaurant = useSelector(state => state.restaurants)
+export default function FlatListProduct({data}) {
   return (
     <View>
       <FlatList
-        data={listRestaurant}
+        data={data}
         horizontal
         showsHorizontalScrollIndicator={false}
         renderItem={({item}) => <FlatListItem item={item}/>}

@@ -1,7 +1,10 @@
 import {combineReducers} from 'redux';
-import restaurants from './restaurantReduces'
-const reducers = combineReducers({
-    restaurants
+import restaurantReduces from './restaurantReduces'
+import foodReducer from './foodReducer';
+import searchFilterReducer from './searchFilterReduces';
+const rootReducers = combineReducers({
+    restaurants:restaurantReduces,
+    foods: foodReducer,
+    searchFilter:searchFilterReducer
 })
-
-export default (state,action) => reducers(state, action);
+export default rootReducers;

@@ -14,10 +14,10 @@ const avatar = $(".avatar"),
 
 const urlRestaurant = "http://localhost:3000/restaurant";
 
-// clear user Input on unfocus 
-userName.addEventListener('mouseup', () =>{
+// clear user Input on unfocus
+userName.addEventListener("mouseup", () => {
   ulElement.innerHTML = "";
-})
+});
 
 // send data to server and get user information
 function sendData(e) {
@@ -171,7 +171,7 @@ formRestaurant.addEventListener("submit", function (event) {
       console.log("Send Successfully");
       formRestaurant.reset();
       tags.length = 0;
-      ul.querySelectorAll("li").forEach(li => li.remove());
+      ul.querySelectorAll("li").forEach((li) => li.remove());
       countTags();
     } else {
       // Xử lý lỗi từ server

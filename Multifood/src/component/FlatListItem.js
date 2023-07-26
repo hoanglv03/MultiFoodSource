@@ -6,7 +6,7 @@ const { width, height } = Dimensions.get("screen");
 export default function FlatListItem({ item }) {
   return (
     <View style={styles.container}>
-      <Image source={item.img} resizeMode="center" style={styles.img} />
+      <Image source={item.img}  style={styles.img} />
       <View style={styles.content}>
         <Text
           style={{
